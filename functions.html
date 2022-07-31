@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>PROMISE</h2>
+<p id="demo"></p>
+<script>
+document.write("<h2>ALPHABETICAL ORDER</h2>");
+let s="webmaster";
+document.write("The input string is: "+s+"<br>");
+let x = myFunction(s);
+document.write("In alphabetical order: "+x);
+
+function myFunction(str) {
+  let chars = str.split('').sort().join('');
+  return chars;}
+
+document.write("<h2>INDEXED COLLECTION</h2>");
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.write("The array is: "+fruits+"<br>");
+document.write("The popped element is: "+fruits.pop()+"<br>");
+
+document.write("<h2>JSON</h2>");
+let text = '{"car":[{"name":"Toyota Rav4","engine": "2.5L",  "price": 32000}]}';
+
+const vehicle = JSON.parse(text);
+document.write("The Vehicle object is:<br>"+vehicle.car[0].name + "  " + vehicle.car[0].engine + "   " + vehicle.car[0].price);
+
+document.write("<h2>ITERATORS & GENERATORS</h2>");
+const unfold = (fn, seed) => {
+  let result = [],
+    val = [null, seed];
+  while ((val = fn(val[1]))) result.push(val[0]);
+  return result;
+};
+var f = n => (n > 50 ? false : [-n, n + 10]);
+document.write(unfold(f, 10));
+
+function myDisplayer(some) {
+ document.getElementById("demo").innerHTML = some;
+}
+
+let myPromise = new Promise(function(myResolve, myReject) {
+  let x = 0;
+
+// some code (try to change x to 5)
+
+  if (x == 0) {
+    myResolve("OK");
+  } else {
+    myReject("Error");
+  }
+});
+
+myPromise.then(
+  function(value) {myDisplayer(value);},
+  function(error) {myDisplayer(error);}
+);
+
+</script>
+
+</body>
+</html>
